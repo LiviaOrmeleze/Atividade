@@ -178,38 +178,50 @@ const exercicio12 = () => {
     error.innerText = `O número ${num} é inválido, informe um número válido `;
     result.innerHTML = "";
   } else {
-
-  for (let i = 1; i <= num.length; i++) {
-    soma += parseInt(num.charAt(num.length - i));
-    result.innerHTML = `A soma dos digitos é ${soma}`
+    for (let i = 1; i <= num.length; i++) {
+      soma += parseInt(num.charAt(num.length - i));
+      result.innerHTML = `A soma dos digitos é ${soma}`;
+    }
   }
-
-}
 };
 
-// const exercicio13 = () => {
-//   let num1 = document.getElementById("num1").value;
-//   let num2 = document.getElementById("num2").value;
-//   let error = document.getElementById("erro");
-//   let result = document.getElementById("resultado");
-//   error.innerText = "";
-//   result.innerText = "";
+const exercicio13 = () => {
+  let num1 = document.getElementById("num1").value;
+  let num2 = document.getElementById("num2").value;
+  let error = document.getElementById("erro");
+  let result = document.getElementById("resultado");
 
-//   if (num1 && num2 <= 0) {
-//     error.innerText = `O número :${num}, não é positivo, informe um número válido `;
-//     result.innerText = "";
-//   } else {
-//     let primo = true;
+  result.innerText = "";
 
-//     for (let i = 2; i < num; i++) {
-//       if (num % i == 0) primo = false; // % resto da divisão
-//     }
+  if (num2 < num1) {
+    menor = parseInt(num2);
+    maior = parseInt(num1);
+  } else {
+    menor = parseInt(num1);
+    maior = parseInt(num2);
+  }
 
-//     primo
-//       ? (result.innerText = `O número ${num} é primo!`)
-//       : (error.innerText = `O número ${num} não é primo!`);
-//   }
-// };
+  if (parseInt(num1) <= 0 || parseInt(num2) <= 0) {
+    error.innerText = "Digite números maiores que zero";
+    result.innerText = "";
+  } else {
+    error.innerText = "";
+    for (let i = menor; i <= maior; i++) {
+      let teste = verificarPrimo(i);
+      if (teste) result.innerText += `#${i}`;
+    }
+  }
+
+  function verificarPrimo(numero) {
+    let primo = true;
+
+    for (let i = 2; i < numero; i++) {
+      if (numero % i == 0) primo = false; // % resto da divisão
+    }
+
+    return primo;
+  }
+};
 
 const exercicio14 = () => {
   let num1 = document.getElementById("num1").value;
@@ -228,7 +240,52 @@ const exercicio14 = () => {
   }
 };
 
-const exercicio15 = () => {};//----------------------------------------------------------------
+const exercicio15 = () => {
+  let palavra = document.getElementById("palavra").value;
+  let error = document.getElementById("erro");
+  let result = document.getElementById("resultado");
+  let avo = [`a`, `e`, `i`, `o`, `u`];
+  let cons = [
+    `b`,
+    `c`,
+    `d`,
+    `f`,
+    `g`,
+    `h`,
+    `j`,
+    `k`,
+    `l`,
+    `m`,
+    `n`,
+    `p`,
+    `q`,
+    `r`,
+    `s`,
+    `t`,
+    ,
+    `v`,
+    `w`,
+    `x`,
+    `y`,
+    `z`,
+  ];
+  palavra = palavra.toLowerCase();
+  if (palavra == "") {
+    error.innerText = "Favor informar uma palavra";
+  }
+  for (let i = 0; i < palavra.length; i++) {
+    for (let l = 0; l < avo.length; l++) {
+      if (palavra.charAt(i) == avo[l]) {
+        result.innerText += `#${palavra.charAt(i)}`;
+      }
+    }
+    for (let z = 0; z < cons.length; z++) {
+      if (palavra.charAt(i) == cons[z]) {
+        error.innerText += `#${palavra.charAt(i)}`;
+      }
+    }
+  }
+}; //----------------------------------------------------------------
 
 const exercicio16 = () => {
   let num1 = document.getElementById("num1").value;
@@ -267,10 +324,9 @@ const exercicio18 = () => {
   let baseMaior = document.getElementById("num1").value;
   let baseMenor = document.getElementById("num2").value;
   let altura = document.getElementById("num3").value;
-  let trapezio = ((baseMaior + baseMenor) * altura) / 2;
+  let trapezio = ((Number(baseMaior) + Number(baseMenor)) * Number(altura)) / 2;
   let result = document.getElementById("resultado");
   let error = document.getElementById("erro");
-//-----------------------------------------------------------------------------------------------------------------------------------
   if (baseMaior <= 0 || altura <= 0 || baseMenor <= 0) {
     error.innerText = ` Não é positivo, informe um número válido `;
     result.innerHTML = "";
@@ -279,48 +335,91 @@ const exercicio18 = () => {
   }
 };
 
-const exercicio19 = () =>{
-  let data =  document.getElementById("data").value;
+const exercicio19 = () => {
+  let data = document.getElementById("data").value;
   let result = document.getElementById("resultado");
   let error = document.getElementById("erro");
-  let data1 = new Date()
-  let data2 = new Date(data)
-  let diferenca = data1.getTime() - data2.getTime()
-  result.innerHTML = `A idade da pessoa é ${Math.floor(diferenca/ (1000 * 60 * 60 * 24 * 365.25))};`
 
- 
-}
+  let data1 = new Date();
+  let data2 = new Date(data);
+  let diferenca = data1.getTime() - data2.getTime();
+  result.innerHTML = `A idade da pessoa é ${Math.floor(
+    diferenca / (1000 * 60 * 60 * 24 * 365.25)
+  )};`;
+};
 
-const exercicio20 = () =>{
+const exercicio20 = () => {
   let frase = document.getElementById("frase").value;
   let result = document.getElementById("resultado");
   let error = document.getElementById("erro");
   let inversa = "";
+  result.innerHTML = "";
+  error.innerText = "";
   if (frase == "") {
     error.innerText = `Escreva uma palavra `;
   } else {
     for (let i = 1; i <= frase.length; i++) {
       inversa += frase.charAt(frase.length - i);
-      result.innerHTML = `O inverso é ${inversa}`
+      result.innerHTML = `O inverso é ${inversa}`;
     }
   }
 };
 
-const exercicio21 = () =>{
+const exercicio21 = () => {
   let frase = document.getElementById("frase").value;
   let result = document.getElementById("resultado");
   let error = document.getElementById("erro");
+  let espacoBranco = frase.trim();
+  result.innerHTML = "";
+  error.innerText = "";
 
-if (frase == "") {
+  console.log(espacoBranco);
+  if (frase == "") {
     error.innerText = `Escreva uma palavra `;
   } else {
-  result.innerHTML = `${frase.trim()}`
-}
-}
+    result.innerHTML = espacoBranco.replace(/\s/g, " ");
+  }
+};
+
 const exercicio22 = () => {
-  let num = document.getElementById("num").value;
+  let num =document.getElementById("num").value
+  let soma =0 
   let result = document.getElementById("resultado");
   let error = document.getElementById("erro");
+  result.innerHTML = "";
+  error.innerText = "";
 
-
+  soma +=parseInt(num)
+  while (soma <= 100) {
+    let numero = parseInt(prompt("Infore mais um numero"))
+    if(isNaN(numero) || numero <=0) {
+      numero = parseInt(prompt(`numero invalido, infome novamente`))
+    }else{
+      soma += numero 
+  }
+  result.innerHTML = `O total da soma é ${soma}`
 }
+}
+
+const exercicio23 = () => {
+  let frase = document.getElementById("frase").value.toLowerCase();
+  let palavra = document.getElementById("palavra").value.toLowerCase();
+  let result = document.getElementById("resultado");
+  let error = document.getElementById("erro");
+  result.innerHTML = "";
+  error.innerText = "";
+  var contador = 0;
+  var busPalavra = frase.split(" ");
+
+  if (frase == "" || palavra == "") {
+    error.innerText = `Escreva uma frase ou uma palavra `;
+  } else {
+    for (let i = 0; i < busPalavra.length; i++) {
+      if (palavra == busPalavra [i]) {
+        contador++;
+      }
+    }
+    result.innerHTML = `A palavra ${palavra} aparece ${contador}, na frase que foi escrita`;
+  }
+};
+
