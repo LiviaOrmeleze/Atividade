@@ -422,4 +422,3 @@ const exercicio23 = () => {
     result.innerHTML = `A palavra ${palavra} aparece ${contador}, na frase que foi escrita`;
   }
 };
-
