@@ -422,3 +422,40 @@ const exercicio23 = () => {
     result.innerHTML = `A palavra ${palavra} aparece ${contador}, na frase que foi escrita`;
   }
 };
+
+const exercicio24 = () => {
+  let result = document.getElementById("resultado");
+  let error = document.getElementById("erro");
+  let frase = document.getElementById("frase").value;
+
+  let palavra = frase.split(" ")
+  let titleCase = palavra.map((palavra) => {
+    return palavra.charAt(0).toUpperCase() + palavra.slice(1)
+  })
+  let fraseNova = titleCase.join(" ")
+  if(frase == "") {
+    error.innerText = `Escreva uma palavra `;
+    result.innerHTML = "";
+  }else{
+    result.innerHTML = fraseNova;
+    error.innerText = "";
+  }
+}
+
+const exercicio25 = () => {
+  let num1 =document.getElementById("num1").value
+  let num2 =document.getElementById("num2").value
+  let num3 =document.getElementById("num3").value
+  let result = document.getElementById("resultado");
+  let error = document.getElementById("erro");
+  result.innerHTML = "";
+
+  let numeros = []
+  numeros.push(num1)
+  numeros.push(num2)
+  numeros.push(num3)
+  numeros.push((a, b) => a-b)
+
+  result.innerHTML += `#${numeros[2]}`;
+  (result.innerHTML += `#${numeros[1]}` ), (result.innerHTML += `#${numeros[0]}`)
+}
